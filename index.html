@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pato Brincando com o Mouse</title>
+<title>AgriNova - Pato Inteligente</title>
 
 <style>
 
@@ -16,25 +16,123 @@
 
 /* BODY */
 body{
-    overflow:hidden;
-    height:100vh;
-    background:linear-gradient(#87CEEB,#dff5ff);
-    font-family:Arial,sans-serif;
+    font-family:Arial, sans-serif;
+    background:#f4f8f2;
+    color:#333;
+    overflow-x:hidden;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(90deg,#2e7d32,#43a047);
+    color:white;
+    padding:20px 40px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h1{
+    font-size:2rem;
+}
+
+/* MENU */
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+}
+
+/* SECTIONS */
+section{
+    background:white;
+    width:85%;
+    margin:30px auto;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* SERVIÇOS */
+#servicos{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
 }
 
 /* TEXTO */
-h1{
-    text-align:center;
-    margin-top:40px;
-    color:white;
-    font-size:3rem;
+.texto-servicos{
+    width:50%;
 }
 
-p{
+/* LISTA */
+#servicos ul{
+    list-style:none;
+}
+
+#servicos li{
+    background:#e8f5e9;
+    margin-bottom:10px;
+    padding:10px;
+    border-left:5px solid #2e7d32;
+    border-radius:6px;
+}
+
+/* GRÁFICO */
+.grafico-area{
+    width:40%;
+    display:flex;
+    justify-content:center;
+}
+
+.grafico-circulo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+        #2e7d32 0% 40%,
+        #66bb6a 40% 70%,
+        #a5d6a7 70% 100%
+    );
+
+    position:relative;
+}
+
+.grafico-circulo::after{
+    content:"AgriNova";
+
+    position:absolute;
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+    background:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#2e7d32;
+    font-weight:bold;
+}
+
+/* FOOTER */
+footer{
     text-align:center;
+    background:#1b5e20;
     color:white;
-    margin-top:10px;
-    font-size:1.2rem;
+    padding:15px;
+    margin-top:30px;
 }
 
 /* PATO */
@@ -76,17 +174,68 @@ p{
 
 }
 
+/* RESPONSIVO */
+@media(max-width:768px){
+
+    #servicos{
+        flex-direction:column;
+    }
+
+    .texto-servicos,
+    .grafico-area{
+        width:100%;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🦆 Pato Maluco</h1>
+<header>
+    <h1>AgriNova</h1>
 
-<p>
-Ele está brincando com o cursor do mouse.
-</p>
+    <nav>
+        <a href="#">Sobre</a>
+        <a href="#">Serviços</a>
+    </nav>
+</header>
 
+<section>
+    <h2>Sobre a AgriNova</h2>
+
+    <p>
+        Empresa focada em tecnologia agrícola e inovação sustentável.
+    </p>
+</section>
+
+<section id="servicos">
+
+    <div class="texto-servicos">
+
+        <h2>Serviços</h2>
+
+        <ul>
+            <li>Monitoramento IoT</li>
+            <li>Irrigação inteligente</li>
+            <li>Consultoria agrícola</li>
+            <li>Análise de solo</li>
+        </ul>
+
+    </div>
+
+    <div class="grafico-area">
+        <div class="grafico-circulo"></div>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 AgriNova
+</footer>
+
+<!-- PATO -->
 <div id="pato">🦆</div>
 
 <script>
@@ -99,7 +248,7 @@ let mouseY = 0;
 let patoX = 100;
 let patoY = 100;
 
-/* PEGAR POSIÇÃO DO MOUSE */
+/* POSIÇÃO DO MOUSE */
 document.addEventListener("mousemove", (e)=>{
 
     mouseX = e.clientX;
@@ -107,7 +256,7 @@ document.addEventListener("mousemove", (e)=>{
 
 });
 
-/* CRIAR PARTÍCULAS */
+/* PARTÍCULAS */
 function criarParticula(x,y){
 
     const p = document.createElement("div");
@@ -153,7 +302,11 @@ function atualizar(){
 
     }
 
-    /* gira */
+    /* limites da tela */
+    patoX = Math.max(0, Math.min(window.innerWidth - 80, patoX));
+    patoY = Math.max(0, Math.min(window.innerHeight - 80, patoY));
+
+    /* direção */
     if(dx < 0){
         pato.style.transform = "scaleX(-1)";
     }else{
