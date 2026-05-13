@@ -1,0 +1,111 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f8f2;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+    background: linear-gradient(90deg, #2e7d32, #43a047);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+/* Navegação */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #c8e6c9;
+}
+
+/* Seções */
+section {
+    background: white;
+    margin: 30px auto;
+    padding: 30px;
+    width: 85%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Títulos */
+section h2 {
+    color: #2e7d32;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+/* Lista de serviços */
+ul {
+    list-style: none;
+}
+
+ul li {
+    background: #e8f5e9;
+    margin: 10px 0;
+    padding: 12px;
+    border-left: 5px solid #2e7d32;
+    border-radius: 6px;
+}
+
+/* Links */
+a {
+    color: #2e7d32;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    background: #1b5e20;
+    color: white;
+    padding: 15px;
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        margin-top: 10px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 10px;
+    }
+
+    section {
+        width: 95%;
+    }
+}
