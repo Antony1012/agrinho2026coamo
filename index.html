@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AgriNova - Inovação Agrícola</title>
+
+<title>Pato Andando</title>
 
 <style>
 
@@ -16,162 +17,50 @@
 
 /* BODY */
 body{
+    height:100vh;
+    overflow:hidden;
     font-family:Arial, sans-serif;
-    background:#f4f8f2;
-    color:#333;
+    background:linear-gradient(#87CEEB 70%, #4CAF50 30%);
 }
 
-/* HEADER */
-header{
-    background:linear-gradient(90deg,#2e7d32,#43a047);
+/* TÍTULO */
+h1{
+    text-align:center;
+    margin-top:40px;
     color:white;
-    padding:20px 40px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-header h1{
-    font-size:2rem;
-}
-
-/* MENU */
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-nav a:hover{
-    color:#c8e6c9;
-}
-
-/* SECTIONS */
-section{
-    background:white;
-    width:85%;
-    margin:30px auto;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-
-section h2{
-    color:#2e7d32;
-    margin-bottom:15px;
-}
-
-/* SOBRE */
-#sobre p{
-    line-height:1.6;
-}
-
-/* SERVIÇOS */
-#servicos{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:30px;
+    font-size:3rem;
+    text-shadow:2px 2px 5px rgba(0,0,0,0.3);
 }
 
 /* TEXTO */
-.texto-servicos{
-    width:50%;
-}
-
-/* LISTA */
-#servicos ul{
-    list-style:none;
-}
-
-#servicos li{
-    background:#e8f5e9;
-    margin-bottom:10px;
-    padding:10px;
-    border-left:5px solid #2e7d32;
-    border-radius:6px;
-    font-size:14px;
-}
-
-/* ÁREA DO GRÁFICO */
-.grafico-area{
-    width:40%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-/* GRÁFICO CIRCULAR */
-.grafico-circulo{
-    width:220px;
-    height:220px;
-    border-radius:50%;
-
-    background:
-    conic-gradient(
-        #2e7d32 0% 40%,
-        #66bb6a 40% 70%,
-        #a5d6a7 70% 100%
-    );
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    position:relative;
-}
-
-/* CENTRO */
-.grafico-circulo::after{
-    content:"AgriNova";
-
-    width:110px;
-    height:110px;
-    border-radius:50%;
-
-    background:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-weight:bold;
-    color:#2e7d32;
-    font-size:18px;
-}
-
-/* FOOTER */
-footer{
+p{
     text-align:center;
-    background:#1b5e20;
     color:white;
-    padding:15px;
-    margin-top:30px;
+    font-size:1.2rem;
+    margin-top:10px;
 }
 
-/* RESPONSIVO */
-@media(max-width:768px){
+/* PATO */
+#pato{
+    position:absolute;
+    bottom:80px;
+    left:-150px;
+    font-size:100px;
 
-    header{
-        flex-direction:column;
-        text-align:center;
+    animation:pular 0.5s infinite alternate;
+}
+
+/* ANIMAÇÃO */
+@keyframes pular{
+
+    from{
+        transform:translateY(0px);
     }
 
-    nav{
-        margin-top:10px;
+    to{
+        transform:translateY(-12px);
     }
 
-    #servicos{
-        flex-direction:column;
-    }
-
-    .texto-servicos,
-    .grafico-area{
-        width:100%;
-    }
 }
 
 </style>
@@ -179,47 +68,38 @@ footer{
 
 <body>
 
-<header>
-    <h1>AgriNova</h1>
+<h1>🦆 Pato andando no site</h1>
 
-    <nav>
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-    </nav>
-</header>
+<p>
+O pato não sabe pra onde vai.
+Mas ele continua.
+</p>
 
-<section id="sobre">
-    <h2>Sobre a AgriNova</h2>
+<div id="pato">🦆</div>
 
-    <p>
-        A AgriNova é uma empresa dedicada à inovação agrícola,
-        oferecendo soluções tecnológicas para produtividade
-        e sustentabilidade no campo.
-    </p>
-</section>
+<script>
 
-<section id="servicos">
+const pato = document.getElementById("pato");
 
-    <div class="texto-servicos">
-        <h2>Serviços</h2>
+let posicao = -150;
 
-        <ul>
-            <li>Monitoramento com sensores IoT</li>
-            <li>Irrigação automatizada</li>
-            <li>Consultoria sustentável</li>
-            <li>Análise de solo</li>
-        </ul>
-    </div>
+function andar(){
 
-    <div class="grafico-area">
-        <div class="grafico-circulo"></div>
-    </div>
+    posicao += 4;
 
-</section>
+    pato.style.left = posicao + "px";
 
-<footer>
-    &copy; 2026 AgriNova. Todos os direitos reservados.
-</footer>
+    // reinicia quando sai da tela
+    if(posicao > window.innerWidth){
+        posicao = -150;
+    }
+
+    requestAnimationFrame(andar);
+}
+
+andar();
+
+</script>
 
 </body>
 </html>
