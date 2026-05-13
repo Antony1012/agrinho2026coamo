@@ -19,6 +19,7 @@ body{
     font-family:Arial, sans-serif;
     background:#f4f8f2;
     color:#333;
+    overflow-x:hidden;
 }
 
 /* HEADER */
@@ -57,6 +58,7 @@ section{
     padding:25px;
     border-radius:12px;
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
 }
 
 section h2{
@@ -94,6 +96,7 @@ section h2{
     border-left:5px solid #2e7d32;
     border-radius:6px;
     font-size:14px;
+    transition:0.3s;
 }
 
 /* ÁREA DO GRÁFICO */
@@ -122,6 +125,7 @@ section h2{
     align-items:center;
 
     position:relative;
+    transition:0.3s;
 }
 
 /* CENTRO */
@@ -150,9 +154,10 @@ footer{
     color:white;
     padding:15px;
     margin-top:30px;
+    transition:0.3s;
 }
 
-/* PATINHO */
+/* PATO */
 #pato{
     position:fixed;
     bottom:20px;
@@ -161,9 +166,10 @@ footer{
     z-index:9999;
 
     animation:pular 0.5s infinite alternate;
+    transition:bottom 0.2s;
 }
 
-/* ANIMAÇÃO DO PATO */
+/* PULO */
 @keyframes pular{
 
     from{
@@ -245,7 +251,7 @@ footer{
     &copy; 2026 AgriNova. Todos os direitos reservados.
 </footer>
 
-<!-- PATINHO -->
+<!-- PATO -->
 <div id="pato">🦆</div>
 
 <script>
@@ -253,17 +259,61 @@ footer{
 const pato = document.getElementById("pato");
 
 let posicao = -120;
+let direcao = 1;
+
+/* ELEMENTOS */
+const elementos = document.querySelectorAll(
+    "header, section, footer, .grafico-circulo, li"
+);
 
 function andar(){
 
-    posicao += 3;
+    posicao += 2 * direcao;
 
     pato.style.left = posicao + "px";
 
-    // volta quando sai da tela
-    if(posicao > window.innerWidth){
-        posicao = -120;
+    /* MUDA DIREÇÃO */
+    if(posicao > window.innerWidth - 100){
+        direcao = -1;
+        pato.style.transform = "scaleX(-1)";
     }
+
+    if(posicao < -120){
+        direcao = 1;
+        pato.style.transform = "scaleX(1)";
+    }
+
+    /* INTERAÇÃO */
+    elementos.forEach(item => {
+
+        const rect = item.getBoundingClientRect();
+        const patoRect = pato.getBoundingClientRect();
+
+        const colidiu =
+            patoRect.right > rect.left &&
+            patoRect.left < rect.right &&
+            patoRect.bottom > rect.top &&
+            patoRect.top < rect.bottom;
+
+        if(colidiu){
+
+            item.style.transform = "scale(1.03)";
+            item.style.boxShadow = "0 0 20px rgba(46,125,50,0.5)";
+
+            pato.style.bottom = "40px";
+
+            setTimeout(() => {
+
+                item.style.transform = "";
+                item.style.boxShadow = "";
+
+                pato.style.bottom = "20px";
+
+            },300);
+
+        }
+
+    });
 
     requestAnimationFrame(andar);
 }
