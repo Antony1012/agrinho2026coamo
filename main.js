@@ -1,55 +1,77 @@
-import java.util.Random;
-import java.util.Scanner;
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pato Andando</title>
 
-public class PatoSupremo {
+<style>
 
-    public static void main(String[] args) {
+body{
+    margin:0;
+    overflow:hidden;
+    background:#87CEEB;
+}
 
-        Scanner teclado = new Scanner(System.in);
-        Random random = new Random();
+/* chão */
+.chao{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:150px;
+    background:#4CAF50;
+}
 
-        String[] frases = {
-            "O pato observa seu destino...",
-            "O pato aprova sua existência.",
-            "O pato ficou decepcionado 😔",
-            "O pato encontrou um Doritos no chão.",
-            "O pato iniciou a revolução das capivaras.",
-            "O pato roubou sua senha do Wi-Fi.",
-            "O pato está dançando funk.",
-            "O pato sumiu misteriosamente..."
-        };
+/* pato */
+#pato{
+    position:absolute;
+    bottom:120px;
+    left:-150px;
+    font-size:100px;
+    animation:pular 0.6s infinite alternate;
+}
 
-        System.out.println("🦆 PATÔMETRO 3000 🦆");
-        System.out.println("----------------------");
+/* animação do pato */
+@keyframes pular{
+    from{
+        transform:translateY(0px);
+    }
 
-        System.out.print("Digite seu nome: ");
-        String nome = teclado.nextLine();
-
-        int nivelPato = random.nextInt(101);
-
-        System.out.println("\nAnalisando nível de pato de " + nome + "...");
-        
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("\nSeu nível de pato é: " + nivelPato + "%");
-
-        if(nivelPato >= 80) {
-            System.out.println("STATUS: Você É o pato.");
-        }
-        else if(nivelPato >= 50) {
-            System.out.println("STATUS: Meio pato.");
-        }
-        else {
-            System.out.println("STATUS: Humano suspeito.");
-        }
-
-        System.out.println("\nMensagem do pato:");
-        System.out.println(frases[random.nextInt(frases.length)]);
-
-        teclado.close();
+    to{
+        transform:translateY(-10px);
     }
 }
+
+</style>
+</head>
+<body>
+
+<div id="pato">🦆</div>
+<div class="chao"></div>
+
+<script>
+
+const pato = document.getElementById("pato");
+
+let posicao = -150;
+
+function andar(){
+
+    posicao += 3;
+
+    pato.style.left = posicao + "px";
+
+    // volta pro começo
+    if(posicao > window.innerWidth){
+        posicao = -150;
+    }
+
+    requestAnimationFrame(andar);
+}
+
+andar();
+
+</script>
+
+</body>
+</html>
