@@ -1,120 +1,56 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriNova - Inovação Agrícola</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-/* Corpo */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f8f2;
-    color: #333;
-}
+    <header>
+        <h1>AgriNova</h1>
 
-/* Cabeçalho */
-header {
-    background: linear-gradient(90deg, #2e7d32, #43a047);
-    color: white;
-    padding: 18px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        <nav>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+        </nav>
+    </header>
 
-header h1 {
-    font-size: 2rem;
-}
+    <section id="sobre">
+        <h2>Sobre a AgriNova</h2>
 
-/* Menu */
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-    transition: 0.3s;
-}
+        <p>
+            A AgriNova é uma empresa dedicada à inovação no setor agrícola,
+            oferecendo soluções tecnológicas para aumentar a produtividade
+            e sustentabilidade das fazendas.
+        </p>
+    </section>
 
-nav a:hover {
-    color: #c8e6c9;
-}
+    <section id="servicos">
 
-/* Seções */
-section {
-    background: white;
-    margin: 30px auto;
-    padding: 25px;
-    width: 85%;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+        <!-- Parte da esquerda -->
+        <div class="texto-servicos">
+            <h2>Serviços</h2>
 
-section h2 {
-    color: #2e7d32;
-    margin-bottom: 15px;
-}
+            <ul>
+                <li>Monitoramento com sensores IoT</li>
+                <li>Irrigação automatizada</li>
+                <li>Consultoria sustentável</li>
+                <li>Análise de solo</li>
+            </ul>
+        </div>
 
-/* SOBRE */
-#sobre p {
-    line-height: 1.6;
-}
+        <!-- Espaço da imagem -->
+        <div class="imagem-servico">
+            Espaço para imagem
+        </div>
 
-/* SERVIÇOS */
-#servicos {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-}
+    </section>
 
-/* Lista menor */
-#servicos ul {
-    width: 50%;
-    list-style: none;
-}
+    <footer>
+        &copy; 2026 AgriNova. Todos os direitos reservados.
+    </footer>
 
-#servicos li {
-    background: #e8f5e9;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-left: 5px solid #2e7d32;
-    border-radius: 6px;
-    font-size: 14px;
-}
-
-/* Espaço da imagem */
-.imagem-servico {
-    width: 40%;
-    height: 250px;
-    background-color: #dcedc8;
-    border: 2px dashed #2e7d32;
-    border-radius: 10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    color: #2e7d32;
-    font-weight: bold;
-}
-
-/* Rodapé */
-footer {
-    text-align: center;
-    background: #1b5e20;
-    color: white;
-    padding: 15px;
-    margin-top: 30px;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    #servicos {
-        flex-direction: column;
-    }
-
-    #servicos ul,
-    .imagem-servico {
-        width: 100%;
-    }
-}
+</body>
+</html>
