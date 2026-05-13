@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AgriNova - Pato Inteligente</title>
+<title>Pato Brincando com o Mouse</title>
 
 <style>
 
@@ -16,150 +16,62 @@
 
 /* BODY */
 body{
-    font-family:Arial, sans-serif;
-    background:#f4f8f2;
-    color:#333;
-    overflow-x:hidden;
-}
-
-/* HEADER */
-header{
-    background:linear-gradient(90deg,#2e7d32,#43a047);
-    color:white;
-    padding:20px 40px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-/* TÍTULO */
-header h1{
-    font-size:2rem;
-}
-
-/* MENU */
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-weight:bold;
-}
-
-/* SECTIONS */
-section{
-    background:white;
-    width:85%;
-    margin:30px auto;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-
-/* SERVIÇOS */
-#servicos{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:30px;
+    overflow:hidden;
+    height:100vh;
+    background:linear-gradient(#87CEEB,#dff5ff);
+    font-family:Arial,sans-serif;
 }
 
 /* TEXTO */
-.texto-servicos{
-    width:50%;
-}
-
-/* LISTA */
-#servicos ul{
-    list-style:none;
-}
-
-#servicos li{
-    background:#e8f5e9;
-    margin-bottom:10px;
-    padding:10px;
-    border-left:5px solid #2e7d32;
-    border-radius:6px;
-}
-
-/* GRÁFICO */
-.grafico-area{
-    width:40%;
-    display:flex;
-    justify-content:center;
-}
-
-.grafico-circulo{
-    width:220px;
-    height:220px;
-    border-radius:50%;
-
-    background:
-    conic-gradient(
-        #2e7d32 0% 40%,
-        #66bb6a 40% 70%,
-        #a5d6a7 70% 100%
-    );
-
-    position:relative;
-}
-
-.grafico-circulo::after{
-    content:"AgriNova";
-
-    position:absolute;
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:110px;
-    height:110px;
-
-    border-radius:50%;
-    background:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    color:#2e7d32;
-    font-weight:bold;
-}
-
-/* FOOTER */
-footer{
+h1{
     text-align:center;
-    background:#1b5e20;
+    margin-top:40px;
     color:white;
-    padding:15px;
-    margin-top:30px;
+    font-size:3rem;
+}
+
+p{
+    text-align:center;
+    color:white;
+    margin-top:10px;
+    font-size:1.2rem;
 }
 
 /* PATO */
 #pato{
     position:fixed;
-    left:-120px;
-    bottom:20px;
+    left:100px;
+    top:100px;
 
-    font-size:70px;
+    font-size:80px;
+
     z-index:9999;
 
     transition:
-    bottom 0.4s ease,
+    left 0.25s linear,
+    top 0.25s linear,
     transform 0.2s;
 }
 
-/* RESPONSIVO */
-@media(max-width:768px){
+/* PARTÍCULAS */
+.particula{
+    position:fixed;
+    font-size:20px;
+    pointer-events:none;
 
-    #servicos{
-        flex-direction:column;
+    animation:sumir 1s forwards;
+}
+
+@keyframes sumir{
+
+    from{
+        opacity:1;
+        transform:translateY(0px);
     }
 
-    .texto-servicos,
-    .grafico-area{
-        width:100%;
+    to{
+        opacity:0;
+        transform:translateY(-40px);
     }
 
 }
@@ -169,143 +81,95 @@ footer{
 
 <body>
 
-<header class="obstaculo">
-    <h1>AgriNova</h1>
+<h1>🦆 Pato Maluco</h1>
 
-    <nav>
-        <a href="#">Sobre</a>
-        <a href="#">Serviços</a>
-    </nav>
-</header>
+<p>
+Ele está brincando com o cursor do mouse.
+</p>
 
-<section class="obstaculo">
-    <h2>Sobre a AgriNova</h2>
-
-    <p>
-        Empresa focada em tecnologia agrícola e inovação sustentável.
-    </p>
-</section>
-
-<section id="servicos" class="obstaculo">
-
-    <div class="texto-servicos">
-        <h2>Serviços</h2>
-
-        <ul>
-            <li>Monitoramento IoT</li>
-            <li>Irrigação inteligente</li>
-            <li>Consultoria agrícola</li>
-            <li>Análise de solo</li>
-        </ul>
-    </div>
-
-    <div class="grafico-area">
-        <div class="grafico-circulo obstaculo"></div>
-    </div>
-
-</section>
-
-<footer class="obstaculo">
-    © 2026 AgriNova
-</footer>
-
-<!-- PATO -->
 <div id="pato">🦆</div>
 
 <script>
 
 const pato = document.getElementById("pato");
 
-let x = -120;
-let direcao = 1;
-let pulando = false;
+let mouseX = 0;
+let mouseY = 0;
 
-/* obstáculos */
-const obstaculos = document.querySelectorAll(".obstaculo");
+let patoX = 100;
+let patoY = 100;
 
-function pular(){
+/* PEGAR POSIÇÃO DO MOUSE */
+document.addEventListener("mousemove", (e)=>{
 
-    if(pulando) return;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 
-    pulando = true;
+});
 
-    /* sobe */
-    pato.style.bottom = "180px";
+/* CRIAR PARTÍCULAS */
+function criarParticula(x,y){
 
-    setTimeout(() => {
+    const p = document.createElement("div");
 
-        /* desce */
-        pato.style.bottom = "20px";
+    p.classList.add("particula");
 
-        setTimeout(() => {
-            pulando = false;
-        },400);
+    p.innerHTML = "💨";
 
-    },500);
+    p.style.left = x + "px";
+    p.style.top = y + "px";
+
+    document.body.appendChild(p);
+
+    setTimeout(()=>{
+        p.remove();
+    },1000);
 
 }
 
-function mover(){
+/* IA DO PATO */
+function atualizar(){
 
-    x += 2 * direcao;
+    let dx = mouseX - patoX;
+    let dy = mouseY - patoY;
 
-    pato.style.left = x + "px";
+    let distancia = Math.sqrt(dx*dx + dy*dy);
 
-    /* vira */
-    if(direcao === -1){
+    /* segue o mouse */
+    if(distancia > 120){
+
+        patoX += dx * 0.03;
+        patoY += dy * 0.03;
+
+    }
+
+    /* foge quando chega perto */
+    if(distancia < 100){
+
+        patoX -= dx * 0.08;
+        patoY -= dy * 0.08;
+
+        criarParticula(patoX,patoY);
+
+    }
+
+    /* gira */
+    if(dx < 0){
         pato.style.transform = "scaleX(-1)";
     }else{
         pato.style.transform = "scaleX(1)";
     }
 
-    /* troca direção */
-    if(x > window.innerWidth - 100){
-        direcao = -1;
-    }
+    pato.style.left = patoX + "px";
+    pato.style.top = patoY + "px";
 
-    if(x < -120){
-        direcao = 1;
-    }
-
-    /* detectar obstáculos */
-    obstaculos.forEach(item => {
-
-        const rect = item.getBoundingClientRect();
-
-        const perto =
-            x + 100 > rect.left &&
-            x < rect.right;
-
-        /* pato pula automaticamente */
-        if(perto && !pulando){
-
-            pular();
-
-            /* efeito */
-            item.style.transition = "0.3s";
-            item.style.transform = "scale(1.02)";
-            item.style.boxShadow =
-            "0 0 20px rgba(46,125,50,0.5)";
-
-            setTimeout(() => {
-
-                item.style.transform = "";
-                item.style.boxShadow = "";
-
-            },500);
-
-        }
-
-    });
-
-    requestAnimationFrame(mover);
+    requestAnimationFrame(atualizar);
 
 }
 
-mover();
+atualizar();
 
 </script>
 
 </body>
-</html>
 </html>
