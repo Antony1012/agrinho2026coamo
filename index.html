@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Pato Andando</title>
+<title>AgriNova - Inovação Agrícola</title>
 
 <style>
 
@@ -17,40 +16,154 @@
 
 /* BODY */
 body{
-    height:100vh;
-    overflow:hidden;
     font-family:Arial, sans-serif;
-    background:linear-gradient(#87CEEB 70%, #4CAF50 30%);
+    background:#f4f8f2;
+    color:#333;
 }
 
-/* TÍTULO */
-h1{
-    text-align:center;
-    margin-top:40px;
+/* HEADER */
+header{
+    background:linear-gradient(90deg,#2e7d32,#43a047);
     color:white;
-    font-size:3rem;
-    text-shadow:2px 2px 5px rgba(0,0,0,0.3);
+    padding:20px 40px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h1{
+    font-size:2rem;
+}
+
+/* MENU */
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#c8e6c9;
+}
+
+/* SECTIONS */
+section{
+    background:white;
+    width:85%;
+    margin:30px auto;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+section h2{
+    color:#2e7d32;
+    margin-bottom:15px;
+}
+
+/* SOBRE */
+#sobre p{
+    line-height:1.6;
+}
+
+/* SERVIÇOS */
+#servicos{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
 }
 
 /* TEXTO */
-p{
-    text-align:center;
-    color:white;
-    font-size:1.2rem;
-    margin-top:10px;
+.texto-servicos{
+    width:50%;
 }
 
-/* PATO */
+/* LISTA */
+#servicos ul{
+    list-style:none;
+}
+
+#servicos li{
+    background:#e8f5e9;
+    margin-bottom:10px;
+    padding:10px;
+    border-left:5px solid #2e7d32;
+    border-radius:6px;
+    font-size:14px;
+}
+
+/* ÁREA DO GRÁFICO */
+.grafico-area{
+    width:40%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* GRÁFICO */
+.grafico-circulo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+        #2e7d32 0% 40%,
+        #66bb6a 40% 70%,
+        #a5d6a7 70% 100%
+    );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+}
+
+/* CENTRO */
+.grafico-circulo::after{
+    content:"AgriNova";
+
+    width:110px;
+    height:110px;
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+    color:#2e7d32;
+    font-size:18px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    background:#1b5e20;
+    color:white;
+    padding:15px;
+    margin-top:30px;
+}
+
+/* PATINHO */
 #pato{
-    position:absolute;
-    bottom:80px;
-    left:-150px;
-    font-size:100px;
+    position:fixed;
+    bottom:20px;
+    left:-120px;
+    font-size:70px;
+    z-index:9999;
 
     animation:pular 0.5s infinite alternate;
 }
 
-/* ANIMAÇÃO */
+/* ANIMAÇÃO DO PATO */
 @keyframes pular{
 
     from{
@@ -58,9 +171,31 @@ p{
     }
 
     to{
-        transform:translateY(-12px);
+        transform:translateY(-10px);
     }
 
+}
+
+/* RESPONSIVO */
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    nav{
+        margin-top:10px;
+    }
+
+    #servicos{
+        flex-direction:column;
+    }
+
+    .texto-servicos,
+    .grafico-area{
+        width:100%;
+    }
 }
 
 </style>
@@ -68,30 +203,66 @@ p{
 
 <body>
 
-<h1>🦆 Pato andando no site</h1>
+<header>
+    <h1>AgriNova</h1>
 
-<p>
-O pato não sabe pra onde vai.
-Mas ele continua.
-</p>
+    <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+    </nav>
+</header>
 
+<section id="sobre">
+    <h2>Sobre a AgriNova</h2>
+
+    <p>
+        A AgriNova é uma empresa dedicada à inovação agrícola,
+        oferecendo soluções tecnológicas para produtividade
+        e sustentabilidade no campo.
+    </p>
+</section>
+
+<section id="servicos">
+
+    <div class="texto-servicos">
+        <h2>Serviços</h2>
+
+        <ul>
+            <li>Monitoramento com sensores IoT</li>
+            <li>Irrigação automatizada</li>
+            <li>Consultoria sustentável</li>
+            <li>Análise de solo</li>
+        </ul>
+    </div>
+
+    <div class="grafico-area">
+        <div class="grafico-circulo"></div>
+    </div>
+
+</section>
+
+<footer>
+    &copy; 2026 AgriNova. Todos os direitos reservados.
+</footer>
+
+<!-- PATINHO -->
 <div id="pato">🦆</div>
 
 <script>
 
 const pato = document.getElementById("pato");
 
-let posicao = -150;
+let posicao = -120;
 
 function andar(){
 
-    posicao += 4;
+    posicao += 3;
 
     pato.style.left = posicao + "px";
 
-    // reinicia quando sai da tela
+    // volta quando sai da tela
     if(posicao > window.innerWidth){
-        posicao = -150;
+        posicao = -120;
     }
 
     requestAnimationFrame(andar);
