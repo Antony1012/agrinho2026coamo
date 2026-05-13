@@ -1,56 +1,225 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriNova - Inovação Agrícola</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriNova - Inovação Agrícola</title>
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY */
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f8f2;
+    color:#333;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(90deg,#2e7d32,#43a047);
+    color:white;
+    padding:20px 40px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h1{
+    font-size:2rem;
+}
+
+/* MENU */
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#c8e6c9;
+}
+
+/* SECTIONS */
+section{
+    background:white;
+    width:85%;
+    margin:30px auto;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+section h2{
+    color:#2e7d32;
+    margin-bottom:15px;
+}
+
+/* SOBRE */
+#sobre p{
+    line-height:1.6;
+}
+
+/* SERVIÇOS */
+#servicos{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+}
+
+/* TEXTO */
+.texto-servicos{
+    width:50%;
+}
+
+/* LISTA */
+#servicos ul{
+    list-style:none;
+}
+
+#servicos li{
+    background:#e8f5e9;
+    margin-bottom:10px;
+    padding:10px;
+    border-left:5px solid #2e7d32;
+    border-radius:6px;
+    font-size:14px;
+}
+
+/* ÁREA DO GRÁFICO */
+.grafico-area{
+    width:40%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* GRÁFICO CIRCULAR */
+.grafico-circulo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+        #2e7d32 0% 40%,
+        #66bb6a 40% 70%,
+        #a5d6a7 70% 100%
+    );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+}
+
+/* CENTRO */
+.grafico-circulo::after{
+    content:"AgriNova";
+
+    width:110px;
+    height:110px;
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+    color:#2e7d32;
+    font-size:18px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    background:#1b5e20;
+    color:white;
+    padding:15px;
+    margin-top:30px;
+}
+
+/* RESPONSIVO */
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    nav{
+        margin-top:10px;
+    }
+
+    #servicos{
+        flex-direction:column;
+    }
+
+    .texto-servicos,
+    .grafico-area{
+        width:100%;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <header>
-        <h1>AgriNova</h1>
+<header>
+    <h1>AgriNova</h1>
 
-        <nav>
-            <a href="#sobre">Sobre</a>
-            <a href="#servicos">Serviços</a>
-        </nav>
-    </header>
+    <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+    </nav>
+</header>
 
-    <section id="sobre">
-        <h2>Sobre a AgriNova</h2>
+<section id="sobre">
+    <h2>Sobre a AgriNova</h2>
 
-        <p>
-            A AgriNova é uma empresa dedicada à inovação no setor agrícola,
-            oferecendo soluções tecnológicas para aumentar a produtividade
-            e sustentabilidade das fazendas.
-        </p>
-    </section>
+    <p>
+        A AgriNova é uma empresa dedicada à inovação agrícola,
+        oferecendo soluções tecnológicas para produtividade
+        e sustentabilidade no campo.
+    </p>
+</section>
 
-    <section id="servicos">
+<section id="servicos">
 
-        <!-- Parte da esquerda -->
-        <div class="texto-servicos">
-            <h2>Serviços</h2>
+    <div class="texto-servicos">
+        <h2>Serviços</h2>
 
-            <ul>
-                <li>Monitoramento com sensores IoT</li>
-                <li>Irrigação automatizada</li>
-                <li>Consultoria sustentável</li>
-                <li>Análise de solo</li>
-            </ul>
-        </div>
+        <ul>
+            <li>Monitoramento com sensores IoT</li>
+            <li>Irrigação automatizada</li>
+            <li>Consultoria sustentável</li>
+            <li>Análise de solo</li>
+        </ul>
+    </div>
 
-        <!-- Espaço da imagem -->
-        <div class="imagem-servico">
-            Espaço para imagem
-        </div>
+    <div class="grafico-area">
+        <div class="grafico-circulo"></div>
+    </div>
 
-    </section>
+</section>
 
-    <footer>
-        &copy; 2026 AgriNova. Todos os direitos reservados.
-    </footer>
+<footer>
+    &copy; 2026 AgriNova. Todos os direitos reservados.
+</footer>
 
 </body>
 </html>
