@@ -1,89 +1,396 @@
-html{
-    scroll-behavior:smooth;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-.hero{
-    background:linear-gradient(
-        rgba(46,125,50,.85),
-        rgba(46,125,50,.85)
-    );
-    
-    color:white;
-    text-align:center;
-    padding:80px 20px;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriNova | Tecnologia para o Agro</title>
 
-.hero h2{
-    font-size:3rem;
-    margin-bottom:20px;
-}
+    <link rel="stylesheet" href="style.css">
 
-.hero p{
-    max-width:700px;
-    margin:auto;
-    font-size:1.2rem;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
 
-.btn{
-    display:inline-block;
-    margin-top:25px;
-    padding:14px 30px;
-    background:white;
-    color:#2e7d32;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.3s;
-}
+<body>
 
-.btn:hover{
-    transform:translateY(-3px);
-}
+    <!-- LOADING -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
 
-.estatisticas{
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
-    margin:40px auto;
-    width:85%;
-}
+    <!-- BOTÃO TOPO -->
+    <button id="btnTopo">↑</button>
 
-.card{
-    background:white;
-    padding:25px;
-    min-width:220px;
-    text-align:center;
-    border-radius:12px;
-    box-shadow:0 6px 15px rgba(0,0,0,.1);
-    transition:.3s;
-}
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <h2>AgriNova</h2>
+        </div>
 
-.card:hover{
-    transform:translateY(-8px);
-}
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#tecnologias">Tecnologias</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
 
-.card h3{
-    color:#2e7d32;
-    font-size:2rem;
-}
+        <div class="menu-mobile">
+            ☰
+        </div>
+    </header>
 
-.tec-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
-}
+    <!-- HERO -->
+    <section id="inicio" class="hero">
 
-.tec-card{
-    background:#e8f5e9;
-    padding:25px;
-    text-align:center;
-    border-radius:12px;
-    font-weight:bold;
-    transition:.3s;
-}
+        <div class="hero-overlay"></div>
 
-.tec-card:hover{
-    transform:scale(1.05);
-    background:#c8e6c9;
-}
+        <div class="hero-content">
+
+            <span class="badge">
+                Agricultura Inteligente
+            </span>
+
+            <h1>
+                Tecnologia que impulsiona
+                o agro sustentável
+            </h1>
+
+            <p>
+                Soluções modernas para aumentar
+                a produtividade, reduzir desperdícios
+                e construir um futuro sustentável
+                para o campo.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#servicos" class="btn-primary">
+                    Conheça Nossas Soluções
+                </a>
+
+                <a href="#sobre" class="btn-secondary">
+                    Saiba Mais
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="sobre">
+
+        <div class="container">
+
+            <div class="titulo">
+                <h2>Quem Somos</h2>
+                <p>
+                    Inovação e sustentabilidade para transformar o agronegócio.
+                </p>
+            </div>
+
+            <div class="sobre-grid">
+
+                <div class="sobre-texto">
+
+                    <h3>AgriNova</h3>
+
+                    <p>
+                        A AgriNova nasceu com o objetivo de unir tecnologia
+                        e agricultura para criar soluções eficientes,
+                        sustentáveis e acessíveis aos produtores rurais.
+                    </p>
+
+                    <p>
+                        Utilizamos sensores inteligentes, drones,
+                        inteligência artificial e análise de dados
+                        para auxiliar na tomada de decisões.
+                    </p>
+
+                </div>
+
+                <div class="sobre-cards">
+
+                    <div class="mini-card">
+                        <h4>Missão</h4>
+                        <p>Modernizar o campo com tecnologia.</p>
+                    </div>
+
+                    <div class="mini-card">
+                        <h4>Visão</h4>
+                        <p>Ser referência em inovação agrícola.</p>
+                    </div>
+
+                    <div class="mini-card">
+                        <h4>Valores</h4>
+                        <p>Sustentabilidade, inovação e confiança.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ESTATÍSTICAS -->
+    <section class="estatisticas">
+
+        <div class="stat-card">
+            <h2 class="contador" data-target="500">0</h2>
+            <p>Propriedades Monitoradas</p>
+        </div>
+
+        <div class="stat-card">
+            <h2 class="contador" data-target="95">0</h2>
+            <p>% Eficiência Hídrica</p>
+        </div>
+
+        <div class="stat-card">
+            <h2 class="contador" data-target="10000">0</h2>
+            <p>Hectares Analisados</p>
+        </div>
+
+        <div class="stat-card">
+            <h2 class="contador" data-target="100">0</h2>
+            <p>% Sustentabilidade</p>
+        </div>
+
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos" class="servicos">
+
+        <div class="titulo">
+            <h2>Nossos Serviços</h2>
+        </div>
+
+        <div class="servicos-grid">
+
+            <div class="servico-card">
+                <h3>📡 Monitoramento IoT</h3>
+                <p>
+                    Sensores inteligentes para monitoramento
+                    em tempo real da lavoura.
+                </p>
+            </div>
+
+            <div class="servico-card">
+                <h3>💧 Irrigação Inteligente</h3>
+                <p>
+                    Uso eficiente dos recursos hídricos.
+                </p>
+            </div>
+
+            <div class="servico-card">
+                <h3>🚜 Agricultura de Precisão</h3>
+                <p>
+                    Dados precisos para tomadas de decisão.
+                </p>
+            </div>
+
+            <div class="servico-card">
+                <h3>🌱 Consultoria Agrícola</h3>
+                <p>
+                    Estratégias para aumentar produtividade.
+                </p>
+            </div>
+
+            <div class="servico-card">
+                <h3>🛰️ Sensoriamento Remoto</h3>
+                <p>
+                    Imagens e monitoramento por satélite.
+                </p>
+            </div>
+
+            <div class="servico-card">
+                <h3>📊 Análise de Dados</h3>
+                <p>
+                    Inteligência baseada em informações reais.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TECNOLOGIAS -->
+    <section id="tecnologias" class="tecnologias">
+
+        <div class="titulo">
+            <h2>Tecnologias Utilizadas</h2>
+        </div>
+
+        <div class="tec-grid">
+
+            <div class="tec-card">🤖 Inteligência Artificial</div>
+
+            <div class="tec-card">📡 IoT</div>
+
+            <div class="tec-card">🛰️ Satélites</div>
+
+            <div class="tec-card">🚁 Drones</div>
+
+            <div class="tec-card">☁️ Cloud Computing</div>
+
+            <div class="tec-card">📈 Big Data</div>
+
+        </div>
+
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section class="beneficios">
+
+        <div class="titulo">
+            <h2>Benefícios</h2>
+        </div>
+
+        <div class="beneficios-grid">
+
+            <div class="beneficio">
+                ✔ Redução de desperdícios
+            </div>
+
+            <div class="beneficio">
+                ✔ Economia de água
+            </div>
+
+            <div class="beneficio">
+                ✔ Maior produtividade
+            </div>
+
+            <div class="beneficio">
+                ✔ Produção sustentável
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria" class="galeria">
+
+        <div class="titulo">
+            <h2>Galeria</h2>
+        </div>
+
+        <div class="galeria-grid">
+
+            <div class="foto"></div>
+            <div class="foto"></div>
+            <div class="foto"></div>
+            <div class="foto"></div>
+            <div class="foto"></div>
+            <div class="foto"></div>
+
+        </div>
+
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+
+        <div class="titulo">
+            <h2>Perguntas Frequentes</h2>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-btn">
+                Como funciona o monitoramento?
+            </button>
+
+            <div class="faq-content">
+                Sensores enviam dados em tempo real.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-btn">
+                A tecnologia reduz custos?
+            </button>
+
+            <div class="faq-content">
+                Sim, reduz desperdícios e aumenta eficiência.
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="contato">
+
+        <div class="titulo">
+            <h2>Entre em Contato</h2>
+        </div>
+
+        <form>
+
+            <input type="text" placeholder="Nome">
+
+            <input type="email" placeholder="Email">
+
+            <input type="text" placeholder="Assunto">
+
+            <textarea placeholder="Mensagem"></textarea>
+
+            <button type="submit">
+                Enviar Mensagem
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+                <h3>AgriNova</h3>
+
+                <p>
+                    Tecnologia para um agro
+                    mais eficiente e sustentável.
+                </p>
+            </div>
+
+            <div>
+                <h3>Links</h3>
+
+                <a href="#">Início</a>
+                <a href="#">Serviços</a>
+                <a href="#">Contato</a>
+            </div>
+
+            <div>
+                <h3>Contato</h3>
+
+                <p>📧 contato@agrinova.com</p>
+                <p>📱 (45) 99999-9999</p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <p class="copyright">
+            © 2026 AgriNova - Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
