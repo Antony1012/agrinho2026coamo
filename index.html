@@ -1,192 +1,3 @@
-<!-- PATO -->
-<style>
-
-#pato{
-    position:fixed;
-    left:100px;
-    top:100px;
-
-    width:90px;
-    height:90px;
-
-    z-index:9999;
-
-    transition:
-    left 0.12s linear,
-    top 0.12s linear;
-
-    animation:balanco 0.4s infinite alternate;
-}
-
-/* Corpo */
-.corpo{
-    position:absolute;
-    width:55px;
-    height:55px;
-    background:#ffd54f;
-    border-radius:50%;
-    top:20px;
-    left:18px;
-}
-
-/* Cabeça */
-.cabeca{
-    position:absolute;
-    width:38px;
-    height:38px;
-    background:#ffe082;
-    border-radius:50%;
-    top:5px;
-    left:42px;
-
-    animation:cabecaMove 0.4s infinite alternate;
-}
-
-/* Olhos */
-.olho{
-    position:absolute;
-    width:5px;
-    height:5px;
-    background:black;
-    border-radius:50%;
-    top:15px;
-
-    animation:piscar 4s infinite;
-}
-
-.olho1{
-    left:16px;
-}
-
-.olho2{
-    left:24px;
-}
-
-/* Bico */
-.bico{
-    position:absolute;
-    width:18px;
-    height:10px;
-    background:orange;
-    border-radius:10px;
-    top:20px;
-    left:30px;
-}
-
-/* Pernas */
-.perna{
-    position:absolute;
-    width:4px;
-    height:20px;
-    background:orange;
-    bottom:2px;
-
-    transform-origin:top center;
-
-    animation:andar 0.15s infinite alternate;
-}
-
-.perna1{
-    left:32px;
-}
-
-.perna2{
-    left:48px;
-    animation-delay:0.15s;
-}
-
-/* Pés */
-.pe{
-    position:absolute;
-    width:14px;
-    height:4px;
-    background:orange;
-    bottom:-2px;
-    left:-5px;
-    border-radius:10px;
-}
-
-/* Corpo balançando */
-@keyframes balanco{
-    from{
-        transform:translateY(0px) rotate(-3deg);
-    }
-    to{
-        transform:translateY(-4px) rotate(3deg);
-    }
-}
-
-/* Cabeça mexendo */
-@keyframes cabecaMove{
-    from{
-        transform:rotate(-5deg);
-    }
-    to{
-        transform:rotate(5deg);
-    }
-}
-
-/* Pernas */
-@keyframes andar{
-    from{
-        transform:rotate(35deg);
-    }
-    to{
-        transform:rotate(-35deg);
-    }
-}
-
-/* Piscar */
-@keyframes piscar{
-    0%,95%,100%{
-        height:5px;
-    }
-    97%{
-        height:1px;
-    }
-}
-
-/* Partículas */
-.particula{
-    position:fixed;
-    font-size:20px;
-    pointer-events:none;
-    animation:sumir 1s forwards;
-}
-
-@keyframes sumir{
-    from{
-        opacity:1;
-        transform:translateY(0px);
-    }
-    to{
-        opacity:0;
-        transform:translateY(-40px);
-    }
-}
-
-</style>
-
-<div id="pato">
-
-    <div class="corpo"></div>
-
-    <div class="cabeca">
-        <div class="olho olho1"></div>
-        <div class="olho olho2"></div>
-        <div class="bico"></div>
-    </div>
-
-    <div class="perna perna1">
-        <div class="pe"></div>
-    </div>
-
-    <div class="perna perna2">
-        <div class="pe"></div>
-    </div>
-
-</div>
-
 <script>
 
 const pato = document.getElementById("pato");
@@ -197,6 +8,10 @@ let mouseY = 0;
 let patoX = 100;
 let patoY = 100;
 
+let direcao = 1;
+let passo = 0;
+
+/* POSIÇÃO DO MOUSE */
 document.addEventListener("mousemove", (e)=>{
 
     mouseX = e.clientX;
@@ -204,11 +19,13 @@ document.addEventListener("mousemove", (e)=>{
 
 });
 
+/* PARTÍCULAS */
 function criarParticula(x,y){
 
     const p = document.createElement("div");
 
     p.classList.add("particula");
+
     p.innerHTML = "💨";
 
     p.style.left = x + "px";
@@ -222,6 +39,7 @@ function criarParticula(x,y){
 
 }
 
+/* IA DO PATO */
 function atualizar(){
 
     let dx = mouseX - patoX;
@@ -229,32 +47,47 @@ function atualizar(){
 
     let distancia = Math.sqrt(dx*dx + dy*dy);
 
+    /* mais lento */
     if(distancia > 120){
 
-        patoX += dx * 0.03;
-        patoY += dy * 0.03;
+        patoX += dx * 0.015;
+        patoY += dy * 0.015;
 
     }
 
+    /* foge quando chega perto */
     if(distancia < 100){
 
-        patoX -= dx * 0.08;
-        patoY -= dy * 0.08;
+        patoX -= dx * 0.04;
+        patoY -= dy * 0.04;
 
-        if(Math.random() < 0.08){
+        if(Math.random() < 0.03){
             criarParticula(patoX,patoY);
         }
 
     }
 
+    /* limites */
     patoX = Math.max(0, Math.min(window.innerWidth - 90, patoX));
     patoY = Math.max(0, Math.min(window.innerHeight - 90, patoY));
 
+    /* direção */
     if(dx < 0){
-        pato.style.scale = "-1 1";
+        direcao = -1;
     }else{
-        pato.style.scale = "1 1";
+        direcao = 1;
     }
+
+    /* animação de caminhada */
+    passo += 0.15;
+
+    const balanco = Math.sin(passo) * 3;
+    const sobeDesce = Math.abs(Math.sin(passo)) * 4;
+
+    pato.style.transform =
+        `translateY(${-sobeDesce}px)
+         rotate(${balanco}deg)
+         scaleX(${direcao})`;
 
     pato.style.left = patoX + "px";
     pato.style.top = patoY + "px";
