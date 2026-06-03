@@ -1,101 +1,200 @@
-<script>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriNova - Inovação Agrícola</title>
 
-const pato = document.getElementById("pato");
+<style>
 
-let mouseX = 0;
-let mouseY = 0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-let patoX = 100;
-let patoY = 100;
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f8f2;
+    color:#333;
+}
 
-let direcao = 1;
-let passo = 0;
+header{
+    background:linear-gradient(90deg,#2e7d32,#43a047);
+    color:white;
+    padding:20px 40px;
 
-/* POSIÇÃO DO MOUSE */
-document.addEventListener("mousemove", (e)=>{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+header h1{
+    font-size:2rem;
+}
 
-});
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+}
 
-/* PARTÍCULAS */
-function criarParticula(x,y){
+section{
+    background:white;
+    width:85%;
+    margin:30px auto;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
 
-    const p = document.createElement("div");
+section h2{
+    color:#2e7d32;
+    margin-bottom:15px;
+}
 
-    p.classList.add("particula");
+#servicos{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+}
 
-    p.innerHTML = "💨";
+.texto-servicos{
+    width:50%;
+}
 
-    p.style.left = x + "px";
-    p.style.top = y + "px";
+#servicos ul{
+    list-style:none;
+}
 
-    document.body.appendChild(p);
+#servicos li{
+    background:#e8f5e9;
+    margin-bottom:10px;
+    padding:10px;
+    border-left:5px solid #2e7d32;
+    border-radius:6px;
+}
 
-    setTimeout(()=>{
-        p.remove();
-    },1000);
+.grafico-area{
+    width:40%;
+    display:flex;
+    justify-content:center;
+}
+
+.grafico-circulo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+
+    background:
+    conic-gradient(
+        #2e7d32 0% 40%,
+        #66bb6a 40% 70%,
+        #a5d6a7 70% 100%
+    );
+
+    position:relative;
+}
+
+.grafico-circulo::after{
+    content:"AgriNova";
+
+    position:absolute;
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+    background:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#2e7d32;
+    font-weight:bold;
+}
+
+footer{
+    text-align:center;
+    background:#1b5e20;
+    color:white;
+    padding:15px;
+    margin-top:30px;
+}
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    #servicos{
+        flex-direction:column;
+    }
+
+    .texto-servicos,
+    .grafico-area{
+        width:100%;
+    }
 
 }
 
-/* IA DO PATO */
-function atualizar(){
+</style>
+</head>
 
-    let dx = mouseX - patoX;
-    let dy = mouseY - patoY;
+<body>
 
-    let distancia = Math.sqrt(dx*dx + dy*dy);
+<header>
+    <h1>AgriNova</h1>
 
-    /* mais lento */
-    if(distancia > 120){
+    <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+    </nav>
+</header>
 
-        patoX += dx * 0.015;
-        patoY += dy * 0.015;
+<section id="sobre">
+    <h2>Sobre a AgriNova</h2>
 
-    }
+    <p>
+        A AgriNova é uma empresa dedicada à inovação agrícola,
+        oferecendo soluções tecnológicas para aumentar a
+        produtividade e a sustentabilidade no campo.
+    </p>
+</section>
 
-    /* foge quando chega perto */
-    if(distancia < 100){
+<section id="servicos">
 
-        patoX -= dx * 0.04;
-        patoY -= dy * 0.04;
+    <div class="texto-servicos">
 
-        if(Math.random() < 0.03){
-            criarParticula(patoX,patoY);
-        }
+        <h2>Serviços</h2>
 
-    }
+        <ul>
+            <li>Monitoramento inteligente com sensores IoT</li>
+            <li>Irrigação automatizada</li>
+            <li>Consultoria agrícola sustentável</li>
+            <li>Análise de solo personalizada</li>
+        </ul>
 
-    /* limites */
-    patoX = Math.max(0, Math.min(window.innerWidth - 90, patoX));
-    patoY = Math.max(0, Math.min(window.innerHeight - 90, patoY));
+    </div>
 
-    /* direção */
-    if(dx < 0){
-        direcao = -1;
-    }else{
-        direcao = 1;
-    }
+    <div class="grafico-area">
+        <div class="grafico-circulo"></div>
+    </div>
 
-    /* animação de caminhada */
-    passo += 0.15;
+</section>
 
-    const balanco = Math.sin(passo) * 3;
-    const sobeDesce = Math.abs(Math.sin(passo)) * 4;
+<footer>
+    © 2026 AgriNova. Todos os direitos reservados.
+</footer>
 
-    pato.style.transform =
-        `translateY(${-sobeDesce}px)
-         rotate(${balanco}deg)
-         scaleX(${direcao})`;
-
-    pato.style.left = patoX + "px";
-    pato.style.top = patoY + "px";
-
-    requestAnimationFrame(atualizar);
-
-}
-
-atualizar();
-
-</script>
+</body>
+</html>
