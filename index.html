@@ -1,200 +1,208 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AgriNova - Inovação Agrícola</title>
-
+<!-- PATO -->
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+#pato{
+    position:fixed;
+    left:100px;
+    top:100px;
+
+    width:90px;
+    height:90px;
+
+    z-index:99999;
+    pointer-events:none;
 }
 
-body{
-    font-family:Arial, sans-serif;
-    background:#f4f8f2;
-    color:#333;
-}
-
-header{
-    background:linear-gradient(90deg,#2e7d32,#43a047);
-    color:white;
-    padding:20px 40px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-header h1{
-    font-size:2rem;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-weight:bold;
-}
-
-section{
-    background:white;
-    width:85%;
-    margin:30px auto;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-
-section h2{
-    color:#2e7d32;
-    margin-bottom:15px;
-}
-
-#servicos{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:30px;
-}
-
-.texto-servicos{
-    width:50%;
-}
-
-#servicos ul{
-    list-style:none;
-}
-
-#servicos li{
-    background:#e8f5e9;
-    margin-bottom:10px;
-    padding:10px;
-    border-left:5px solid #2e7d32;
-    border-radius:6px;
-}
-
-.grafico-area{
-    width:40%;
-    display:flex;
-    justify-content:center;
-}
-
-.grafico-circulo{
-    width:220px;
-    height:220px;
-    border-radius:50%;
-
-    background:
-    conic-gradient(
-        #2e7d32 0% 40%,
-        #66bb6a 40% 70%,
-        #a5d6a7 70% 100%
-    );
-
-    position:relative;
-}
-
-.grafico-circulo::after{
-    content:"AgriNova";
-
+/* Corpo */
+.pato-corpo{
     position:absolute;
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:110px;
-    height:110px;
-
+    width:55px;
+    height:50px;
+    background:#ffd54f;
     border-radius:50%;
-    background:white;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    color:#2e7d32;
-    font-weight:bold;
+    left:15px;
+    top:25px;
 }
 
-footer{
-    text-align:center;
-    background:#1b5e20;
-    color:white;
-    padding:15px;
-    margin-top:30px;
+/* Cabeça */
+.pato-cabeca{
+    position:absolute;
+    width:35px;
+    height:35px;
+    background:#ffe082;
+    border-radius:50%;
+    left:50px;
+    top:8px;
 }
 
-@media(max-width:768px){
+/* Olho */
+.pato-olho{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:#000;
+    border-radius:50%;
+    top:12px;
+    left:20px;
 
-    header{
-        flex-direction:column;
-        text-align:center;
+    animation:piscar 4s infinite;
+}
+
+/* Bico */
+.pato-bico{
+    position:absolute;
+    width:16px;
+    height:8px;
+    background:orange;
+    border-radius:10px;
+    top:18px;
+    left:28px;
+}
+
+/* Pernas */
+.perna{
+    position:absolute;
+    width:4px;
+    height:18px;
+    background:orange;
+    bottom:8px;
+
+    transform-origin:top center;
+
+    animation:andar 0.18s infinite alternate;
+}
+
+.perna1{
+    left:30px;
+}
+
+.perna2{
+    left:45px;
+    animation-delay:.18s;
+}
+
+.pe{
+    position:absolute;
+    width:12px;
+    height:4px;
+    background:orange;
+    bottom:-2px;
+    left:-4px;
+    border-radius:10px;
+}
+
+/* Caminhada */
+@keyframes andar{
+    from{
+        transform:rotate(35deg);
     }
-
-    #servicos{
-        flex-direction:column;
+    to{
+        transform:rotate(-35deg);
     }
+}
 
-    .texto-servicos,
-    .grafico-area{
-        width:100%;
+/* Piscar */
+@keyframes piscar{
+    0%,96%,100%{
+        transform:scaleY(1);
     }
+    98%{
+        transform:scaleY(.1);
+    }
+}
 
+/* Balanço */
+@keyframes balanco{
+    0%{
+        transform:translateY(0px) rotate(-2deg);
+    }
+    50%{
+        transform:translateY(-3px) rotate(0deg);
+    }
+    100%{
+        transform:translateY(0px) rotate(2deg);
+    }
+}
+
+.pato-animado{
+    animation:balanco .3s infinite;
 }
 
 </style>
-</head>
 
-<body>
+<div id="pato">
 
-<header>
-    <h1>AgriNova</h1>
+    <div class="pato-animado">
 
-    <nav>
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-    </nav>
-</header>
+        <div class="pato-corpo"></div>
 
-<section id="sobre">
-    <h2>Sobre a AgriNova</h2>
+        <div class="pato-cabeca">
+            <div class="pato-olho"></div>
+            <div class="pato-bico"></div>
+        </div>
 
-    <p>
-        A AgriNova é uma empresa dedicada à inovação agrícola,
-        oferecendo soluções tecnológicas para aumentar a
-        produtividade e a sustentabilidade no campo.
-    </p>
-</section>
+        <div class="perna perna1">
+            <div class="pe"></div>
+        </div>
 
-<section id="servicos">
-
-    <div class="texto-servicos">
-
-        <h2>Serviços</h2>
-
-        <ul>
-            <li>Monitoramento inteligente com sensores IoT</li>
-            <li>Irrigação automatizada</li>
-            <li>Consultoria agrícola sustentável</li>
-            <li>Análise de solo personalizada</li>
-        </ul>
+        <div class="perna perna2">
+            <div class="pe"></div>
+        </div>
 
     </div>
 
-    <div class="grafico-area">
-        <div class="grafico-circulo"></div>
-    </div>
+</div>
 
-</section>
+<script>
 
-<footer>
-    © 2026 AgriNova. Todos os direitos reservados.
-</footer>
+const pato = document.getElementById("pato");
 
-</body>
-</html>
+let mouseX = window.innerWidth/2;
+let mouseY = window.innerHeight/2;
+
+let patoX = 100;
+let patoY = 100;
+
+document.addEventListener("mousemove",(e)=>{
+
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+});
+
+function animar(){
+
+    let dx = mouseX - patoX;
+    let dy = mouseY - patoY;
+
+    let distancia = Math.sqrt(dx*dx + dy*dy);
+
+    /* velocidade */
+    if(distancia > 5){
+
+        patoX += dx * 0.04;
+        patoY += dy * 0.04;
+
+    }
+
+    /* virar */
+    if(dx < 0){
+
+        pato.style.transform = "scaleX(-1)";
+
+    }else{
+
+        pato.style.transform = "scaleX(1)";
+
+    }
+
+    pato.style.left = patoX + "px";
+    pato.style.top = patoY + "px";
+
+    requestAnimationFrame(animar);
+
+}
+
+animar();
+
+</script>
