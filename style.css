@@ -114,3 +114,39 @@ footer {
         width: 100%;
     }
 }
+.pato {
+    width: 150px;
+    animation: andar 3s infinite ease-in-out;
+}
+
+@keyframes andar {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    25% {
+        transform: translateX(50px) rotate(-3deg);
+    }
+    50% {
+        transform: translateX(100px) rotate(3deg);
+    }
+    75% {
+        transform: translateX(50px) rotate(-3deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+}
+.pato {
+    animation:
+        andar 4s infinite linear,
+        balancar 0.4s infinite alternate;
+}
+
+@keyframes balancar {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-5px);
+    }
+}
